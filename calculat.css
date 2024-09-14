@@ -1,0 +1,56 @@
+body {
+    background-color: #121212;
+}
+
+h3 {
+    text-align: center;
+    padding: 23px;
+    color: white;
+}
+
+.calb {
+    width: 300px;
+    height: auto;
+    margin: auto;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #252525;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 250px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 3px;
+    border-color: white;
+    background-color: #121212;
+    color: white;
+    font-size: 20px;
+    text-align: right;
+}
+
+input[type="button"] {
+    width: 60px;
+    height: 60px;
+    background-color: #252525;
+    color: white;
+    border: 3px solid #252525;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 25px;
+}
+
+#Clear, #divi, #multip, #subt, #pluse, #del, #sqrt {
+    color: #2a73ff;
+}
+
+
+
+#btn {
+    width: 130px;
+    background-color: #2a73ff;
+    color: white;
+    border-radius: 10px;
+}

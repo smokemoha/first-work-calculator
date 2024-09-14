@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculat.css">
+   
+    <script src="sweetalert.min.js"></script>
+</head>
+<body>
+    <h3>CALCULATOR</h3>                                          
+    <div class="calb">
+        <form name="form1" id="form" onsubmit="clck(event)">
+            <input id="cal" type="text" name="answer" readonly><br><br>
+
+            <input type="button" value="C" onclick="clearInput()" id="Clear">
+            <input type="button" value="/" onclick="addInput('/')" id="divi">
+            <input type="button" value="×" onclick="addInput('*')" id="multip">
+            <input type="button" value="⌫" onclick="DEL()" id="del"><br>
+
+            <input type="button" value="1" onclick="addInput('1')">
+            <input type="button" value="2" onclick="addInput('2')">
+            <input type="button" value="3" onclick="addInput('3')">
+            <input type="button" value="-" onclick="addInput('-')" id="subt"><br>
+
+            <input type="button" value="4" onclick="addInput('4')">
+            <input type="button" value="5" onclick="addInput('5')">
+            <input type="button" value="6" onclick="addInput('6')">
+            <input type="button" value="+" onclick="addInput('+')" id="pluse"><br>
+
+            <input type="button" value="7" onclick="addInput('7')">
+            <input type="button" value="8" onclick="addInput('8')">
+            <input type="button" value="9" onclick="addInput('9')">
+            <input type="button" value="0" onclick="addInput('0')"><br>
+
+            <input type="button" value="%" onclick="percent();">
+            <input type="button" value="." onclick="addInput('.')">
+            <input type="button" value="√" onclick="sqrt();" id="sqrt">
+            <input type="button" value="=" onclick="calculate()" id="equal"><br>
+
+            <input type="button" value="on" onclick="onandoff();" id="btn">
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+let status = 'off';  // Initialize the status variable
+
+// Function to add input to the calculator display
+function addInput(value) {
+    if (status === 'on') {
+        form1.answer.value += value;
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Clear input
+function clearInput() {
+    if (status === 'on') {
+        form1.answer.value = '';
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Square root function
+function sqrt() {
+    if (status === 'on') {
+        if (form1.answer.value) {
+            form1.answer.value = Math.sqrt(parseFloat(form1.answer.value));
+        } else {
+            swal('Please enter a value for square root', '', 'error');
+        }
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Delete last input (backspace)
+function DEL() {
+    if (status === 'on') {
+        form1.answer.value = form1.answer.value.slice(0, -1);
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Percent function
+function percent() {
+    if (status === 'on') {
+        if (form1.answer.value) {
+            form1.answer.value = parseFloat(form1.answer.value) / 100;
+        } else {
+            swal('Please enter a value for percentage', '', 'error');
+        }
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Toggle calculator on/off
+function onandoff() {
+    if (status === 'on') {
+        status = 'off';
+        document.getElementById("btn").style = "background-color:#252525";
+        document.getElementById("btn").value = 'on';
+        document.getElementById("cal").readOnly = true; // Make the input readonly when off
+        swal('Calculator is now off', '', 'warning');
+    } else {
+        status = 'on';
+        document.getElementById("btn").style = "background-color: #2a73ff; border-radius:15px; width:130px; height:60px;";
+        document.getElementById("btn").value = 'off';
+        document.getElementById("cal").readOnly = false; // Allow input when on
+        swal('Calculator is now on', '', 'success');
+    }
+}
+
+// Handle calculation
+function calculate() {
+    if (status === 'on') {
+        try {
+            form1.answer.value = eval(form1.answer.value);
+        } catch (e) {
+            swal('Invalid input', '', 'error');
+        }
+    } else {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+
+// Prevent form submission and check if calculator is off
+function clck(event) {
+    event.preventDefault();  // Prevent form submission
+    if (status === 'off') {
+        swal('Click on the "on" button to use the calculator', '', 'error');
+    }
+}
+</script>
+\end{code}
